@@ -15,19 +15,19 @@ class Complex {
   }
 
   Complex(int x, int y) {
-    this((x - width * 0.5) * SCALE_FACTOR, 
+    this((x - width * 0.5) * SCALE_FACTOR,
          (y - height * 0.5) * SCALE_FACTOR);
   }
-  
+
   PVector coord() {
     return new PVector(re / SCALE_FACTOR + width * 0.5,
                        im / SCALE_FACTOR + height * 0.5);
   }
-  
+
   Complex copy() {
     return new Complex(re, im);
   }
-  
+
   void mult(Complex other) {
     float old_re = re,
           old_im = im,
@@ -36,14 +36,14 @@ class Complex {
     re = old_re * otd_re - otd_im * old_im;
     im = old_re * otd_im + old_im * otd_re;
   }
-  
+
   void add(Complex other) {
     re += other.re;
     im += other.im;
   }
-  
+
   float abs() {
-    return dist(0, 0, re, im); 
+    return dist(0, 0, re, im);
   }
 }
 
@@ -55,7 +55,7 @@ boolean is_brot(int x, int y) {
     z.mult(z);
     z.add(c);
     if (z.abs() > 2) {
-      return false; 
+      return false;
     }
   }
   return true;
@@ -67,7 +67,7 @@ PImage draw_brot() {
   for (int x = 0; x < width; x++) {
     for (int y = 0; y < width; y++) {
       if (is_brot(x, y)) {
-        brot.pixels[y * width + x] = BROT_COLOUR; 
+        brot.pixels[y * width + x] = BROT_COLOUR;
       }
     }
   }
